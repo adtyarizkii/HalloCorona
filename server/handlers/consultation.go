@@ -50,7 +50,7 @@ func (h *handlerConsultation) GetConsultation(w http.ResponseWriter, r *http.Req
 	}
 
 	w.WriteHeader(http.StatusOK)
-	response := dto.SuccessResult{Code: http.StatusOK, Data: consultation}
+	response := dto.SuccessResult{Code: http.StatusOK, Data: convertResponseConsultation(consultation)}
 	json.NewEncoder(w).Encode(response)
 }
 
@@ -134,7 +134,10 @@ func (h *handlerConsultation) UpdateConsultation(w http.ResponseWriter, r *http.
 		consultation.Phone = request.Phone
 	}
 
-	
+	if request.BornDate != "" {
+		consultation.BornDate = request.BornDate
+	}
+
 	if request.Age != 0 {
 		consultation.Age = request.Age
 	}
@@ -153,6 +156,10 @@ func (h *handlerConsultation) UpdateConsultation(w http.ResponseWriter, r *http.
 
 	if request.Subject != "" {
 		consultation.Subject = request.Subject
+	}
+
+	if request.LiveConsul != "" {
+		consultation.LiveConsul = request.LiveConsul
 	}
 
 
