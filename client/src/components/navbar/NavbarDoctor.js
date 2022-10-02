@@ -7,6 +7,7 @@ import Profile from "../../assets/dropdown/profile.png";
 import Article from "../../assets/dropdown/article.png";
 import LogoutIcon from "../../assets/dropdown/logout.png";
 import { UserContext } from "../../context/userContext";
+import ListArticle from "../../assets/article.png";
 
 export default function NavbarDoctor() {
   const [state, dispatch] = useContext(UserContext);
@@ -55,6 +56,19 @@ export default function NavbarDoctor() {
                     style={{ width: "25px", marginRight: "5px" }}
                   />
                   Profile
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  bg="dark"
+                  variant="dark"
+                  as={Link}
+                  to="/doctor/list-article"
+                >
+                  <img
+                    src={ListArticle}
+                    alt="icon"
+                    style={{ width: "25px", marginRight: "5px" }}
+                  />
+                  List Article
                 </NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/doctor/add-article">
                   <img

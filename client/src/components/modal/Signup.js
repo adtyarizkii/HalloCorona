@@ -219,6 +219,7 @@ export default function Signup({ signUpShow, setSignUpShow, signUpHere }) {
                 <label className="label">List As</label>
                 <select
                   name="listAs"
+                  value={listAs}
                   onChange={handleChange}
                   className="px-3 py-2 mb-2"
                 >

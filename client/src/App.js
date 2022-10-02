@@ -15,6 +15,8 @@ import AddArticle from "./pages/doctor/AddArticle";
 
 import { UserContext } from "./context/userContext";
 import { API, setAuthToken } from "./config/api";
+import DetailReserv from "./pages/doctor/DetailReserv";
+import Article from "./components/article/Article";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -77,17 +79,23 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Auth />} />
-        <Route path="/detailarticle" element={<DetailArticleAuth />} />
+        <Route path="/detailarticle/:id" element={<DetailArticleAuth />} />
         <Route path="/patient" element={<LayoutPatient />}>
           <Route index element={<HomePage />} />
-          <Route path="/patient/detailarticle" element={<DetailArticle />} />
+          <Route
+            path="/patient/detailarticle/:id"
+            element={<DetailArticle />}
+          />
           <Route path="/patient/profile" element={<Profile />} />
           <Route path="/patient/consultation" element={<ReservationPage />} />
           <Route path="/patient/inbox" element={<Inbox />} />
         </Route>
         <Route path="/doctor" element={<LayoutDoctor />}>
           <Route index element={<Reservation />} />
+          <Route path="/doctor/reservation/:id" element={<DetailReserv />} />
           <Route path="/doctor/add-article" element={<AddArticle />} />
+          <Route path="/doctor/list-article" element={<Article />} />
+          <Route path="/doctor/detailarticle/:id" element={<DetailArticle />} />
           <Route path="/doctor/profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<Notfound />} />
