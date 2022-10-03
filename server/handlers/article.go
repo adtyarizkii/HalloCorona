@@ -122,46 +122,49 @@ func (h *handlerArticle) CreateArticle(w http.ResponseWriter, r *http.Request) {
 func (h *handlerArticle) UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	request := new(articledto.UpdateArticleRequest)
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		response := dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()}
-		json.NewEncoder(w).Encode(response)
-		return
-	}
-
+	// get article id 
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
-	article, err := h.ArticleRepository.GetArticle(int(id))
-	if err != nil {
-		w.WriteHeader(http.StatusBadRequest)
-		response := dto.ErrorResult{Code: http.StatusBadRequest, Message: err.Error()}
-		json.NewEncoder(w).Encode(response)
-		return
-	}
 
-	if request.Title != "" {
-		article.Title = request.Title
-	}
-	if request.Image != "" {
-		article.Image = request.Image
-	}
-	if request.Desc != "" {
-		article.Desc = request.Desc
-	}
+	// get image filename
+	dataContex := r.Context().Value("dataFile")
+	filename := dataContex.(string)
 
-
-
-	data, err := h.ArticleRepository.UpdateArticle(article)
+	request := articledto.UpdateArticleRequest{
+		Title: 		r.FormValue("title"),
+		Desc:		r.FormValue("desc"),  
+	}
+	
+	validation := validator.New()
+	err := validation.Struct(request)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		response := dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()}
 		json.NewEncoder(w).Encode(response)
 		return
 	}
+	
+	
+	article, _ := h.ArticleRepository.GetArticle(id)
+	
+	article.Title = request.Title
+	article.Desc = request.Desc
+		
+	
+	if filename != "false" {
+		article.Image = filename
+	}
 
+	article, err = h.ArticleRepository.UpdateArticle(article)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		response := dto.ErrorResult{Code: http.StatusInternalServerError, Message: err.Error()}
+		json.NewEncoder(w).Encode(response)
+		return
+	}
+	
 	w.WriteHeader(http.StatusOK)
-	response := dto.SuccessResult{Code: http.StatusOK, Data: data}
-	json.NewEncoder(w).Encode(response)
+	response := dto.SuccessResult{Code: http.StatusOK, Data: article}
+	json.NewEncoder(w).Encode(response)	
 }
 
 func (h *handlerArticle) DeleteArticle(w http.ResponseWriter, r *http.Request) {

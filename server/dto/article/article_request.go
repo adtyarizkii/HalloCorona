@@ -9,6 +9,6 @@ type CreateArticleRequest struct {
 
 type UpdateArticleRequest struct {
 	Title string `json:"title" gorm:"type: varchar(255)"`
-	Image string `json:"image" gorm:"type: varchar(255)"`
-	Desc  string `json:"desc" gorm:"type:text" form:"desc"`
+	// Image string `json:"image" gorm:"type: varchar(255)"`
+	Desc string `json:"desc" gorm:"type:text" form:"desc"`
 }

@@ -9,5 +9,4 @@ func RouteInit(r *mux.Router) {
 	AuthRoutes(r)
 	ArticleRoutes(r)
 	ConsultationRoutes(r)
-	ReservationRoutes(r)
 }

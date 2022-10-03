@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 import { Container, Navbar } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import Signup from "../../components/modal/Signup";
 import Signin from "../../components/modal/Signin";
-import artikel from "../../assets/artikel.png";
-import { useQuery } from "react-query";
-import { API } from "../../config/api";
-import moment from "moment";
 import DetailArticle from "../../components/article/DetailArticle";
 
 export default function DetailArticleAuth() {

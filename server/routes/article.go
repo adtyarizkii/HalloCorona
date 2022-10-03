@@ -16,6 +16,6 @@ func ArticleRoutes(r *mux.Router) {
 	r.HandleFunc("/articles", h.FindArticles).Methods("GET")
 	r.HandleFunc("/article/{id}", h.GetArticle).Methods("GET")
 	r.HandleFunc("/article", middleware.Auth(middleware.UploadFile(h.CreateArticle))).Methods("POST")
-	r.HandleFunc("/article/{id}", middleware.Auth(h.UpdateArticle)).Methods("PATCH")
+	r.HandleFunc("/article/{id}", middleware.Auth(middleware.UploadFile(h.UpdateArticle))).Methods("PATCH")
 	r.HandleFunc("/article/{id}", middleware.Auth(h.DeleteArticle)).Methods("DELETE")
 }

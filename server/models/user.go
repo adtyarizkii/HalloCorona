@@ -3,18 +3,17 @@ package models
 import "time"
 
 type User struct {
-  ID              int                    `json:"id"`
-  Fullname        string                 `json:"fullname" gorm:"type: varchar(255)"`
-  Username	      string	               `json:"username" gorm:"type: varchar(255)"`
-  Email           string                 `json:"email" gorm:"type: varchar(255)"`
-  Password        string                 `json:"-" gorm:"type: varchar(255)"`
-  ListAs  	      string                 `json:"listAs" gorm:"type: varchar(255)"`
-  Consultation    []ConsultationResponse   `json:"consultation" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
-  Gender  	      string                 `json:"gender" gorm:"type: varchar(255)"`
-  Phone  	        string                 `json:"phone" gorm:"type: varchar(255)"`
-  Address  	      string                 `json:"address" gorm:"type: varchar(255)"`
-  CreatedAt       time.Time              `json:"-"`
-  UpdatedAt       time.Time              `json:"-"`
+  ID        int       `json:"id"`
+  Fullname  string    `json:"fullname" gorm:"type: varchar(255)"`
+  Username	string	  `json:"username" gorm:"type: varchar(255)"`
+  Email     string    `json:"email" gorm:"type: varchar(255)"`
+  Password  string    `json:"-" gorm:"type: varchar(255)"`
+  ListAs  	string    `json:"listAs" gorm:"type: varchar(255)"`
+  Gender  	string    `json:"gender" gorm:"type: varchar(255)"`
+  Phone  	  string    `json:"phone" gorm:"type: varchar(255)"`
+  Address  	string    `json:"address" gorm:"type: varchar(255)"`
+  CreatedAt time.Time `json:"-"`
+  UpdatedAt time.Time `json:"-"`
 }
 
 type UserResponse struct {

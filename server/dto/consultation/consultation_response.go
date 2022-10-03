@@ -21,6 +21,7 @@ type ConsultationResponse struct {
 	Status		string					`json:"status" gorm:"type: varchar(255)"`
 	Reply 		string					`json:"reply" gorm:"type:text" form:"reply" `
 	LinkLive	string					`json:"linkLive" gorm:"type: varchar(255)"`
+	// Reservation	bool					`json:"reservation"`
 	CreatedAt 	time.Time 				`json:"createdAt"`
 	UpdatedAt 	time.Time 				`json:"updatedAt"`
 }

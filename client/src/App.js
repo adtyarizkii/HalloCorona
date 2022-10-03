@@ -15,8 +15,9 @@ import AddArticle from "./pages/doctor/AddArticle";
 
 import { UserContext } from "./context/userContext";
 import { API, setAuthToken } from "./config/api";
-import DetailReserv from "./pages/doctor/DetailReserv";
 import Article from "./components/article/Article";
+import DetReserv from "./pages/doctor/DetReserv";
+import UpdateArticle from "./pages/doctor/UpdateArticle";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -92,10 +93,14 @@ function App() {
         </Route>
         <Route path="/doctor" element={<LayoutDoctor />}>
           <Route index element={<Reservation />} />
-          <Route path="/doctor/reservation/:id" element={<DetailReserv />} />
+          <Route path="/doctor/reservation/:id" element={<DetReserv />} />
           <Route path="/doctor/add-article" element={<AddArticle />} />
           <Route path="/doctor/list-article" element={<Article />} />
           <Route path="/doctor/detailarticle/:id" element={<DetailArticle />} />
+          <Route
+            path="/doctor/update-article/:id"
+            element={<UpdateArticle />}
+          />
           <Route path="/doctor/profile" element={<Profile />} />
         </Route>
         <Route path="*" element={<Notfound />} />

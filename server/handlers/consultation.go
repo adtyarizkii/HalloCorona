@@ -234,5 +234,8 @@ func convertResponseConsultation(u models.Consultation) consultationdto.Consulta
 		Status: u.Status,
 		Reply: u.Reply,
 		LinkLive: u.LinkLive,
+		// Reservation: u.Reservation,
+		CreatedAt: u.CreatedAt,
+		UpdatedAt: u.UpdatedAt,
 	}
 }

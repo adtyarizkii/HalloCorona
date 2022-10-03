@@ -15,6 +15,7 @@ type CreateConsultationRequest struct {
 	Status     string `json:"status" gorm:"type: varchar(255)"`
 	Reply      string `json:"reply" gorm:"type:text" form:"reply" `
 	LinkLive   string `json:"linkLive" gorm:"type: varchar(255)"`
+	// Reservation bool   `json:"reservation"`
 }
 
 type UpdateConsultationRequest struct {
@@ -29,6 +30,7 @@ type UpdateConsultationRequest struct {
 	LiveConsul string `json:"liveConsul"`
 	Desc       string `json:"desc" gorm:"type:text" form:"desc"`
 	Status     string `json:"status" gorm:"type: varchar(255)"`
-	Reply      string `json:"reply" gorm:"type:text" form:"reply" `
-	LinkLive   string `json:"linkLive" gorm:"type: varchar(255)"`
+	Reply      string `json:"reply" gorm:"type:text" form:"reply" validate:"required"`
+	LinkLive   string `json:"linkLive" gorm:"type: varchar(255)" validate:"required"`
+	// Reservation bool   `json:"reservation"`
 }

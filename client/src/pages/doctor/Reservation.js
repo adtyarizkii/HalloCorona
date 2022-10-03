@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table, Card } from "react-bootstrap";
 import action from "../../assets/action.png";
 import { useQuery } from "react-query";
 import { API } from "../../config/api";
 import moment from "moment";
-import DetailReserv from "./DetailReserv";
+import { Link } from "react-router-dom";
 
 const styles = {
   cardd: {
@@ -22,21 +22,6 @@ export default function Reservation() {
     return response.data.data;
   });
   // console.log(consultations);
-
-  const value = [true];
-  const [fullscreen, setFullscreen] = useState(true);
-  const [show, setShow] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
-
-  function handleShow(breakpoint) {
-    setFullscreen(breakpoint);
-    setShow(true);
-  }
-
-  const handleId = (id) => {
-    setSelectedId(id);
-    handleShow(value);
-  };
 
   return (
     <div>
@@ -79,17 +64,15 @@ export default function Reservation() {
                       : "Cancel"}
                   </td>
                   <td>
-                    <button
-                      style={{
-                        border: "0px",
-                      }}
-                      onClick={() => handleId(item.id)}
-                      // onClick={() => handleShow(value)}
-                    >
-                      {/* <Link to="/doctor/reservation/:id"> */}
-                      <img src={action} alt="action" />
-                      {/* </Link> */}
-                    </button>
+                    <Link to={`/doctor/reservation/${item.id}`}>
+                      <button
+                        style={{
+                          border: "0px",
+                        }}
+                      >
+                        <img src={action} alt="action" />
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               ))}
@@ -97,14 +80,6 @@ export default function Reservation() {
           </Table>
         </Card.Body>
       </Card>
-
-      {/* modal */}
-      <DetailReserv
-        show={show}
-        fullscreen={fullscreen}
-        setShow={setShow}
-        selectedId={selectedId}
-      />
     </div>
   );
 }

@@ -7,8 +7,6 @@ import Signin from "../../components/modal/Signin";
 import bgImg from "../../assets/Jumbotron.png";
 import iconbtn from "../../assets/iconbtn.png";
 import artikel from "../../assets/artikel.png";
-import { useQuery } from "react-query";
-import { API } from "../../config/api";
 import Article from "../../components/article/Article";
 
 export default function Auth() {
