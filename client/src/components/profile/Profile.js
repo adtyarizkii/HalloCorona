@@ -15,7 +15,7 @@ export default function Profile() {
 
   const [state] = useContext(UserContext);
 
-  console.log(state);
+  // console.log(state);
 
   return (
     <div className="profile-container">
