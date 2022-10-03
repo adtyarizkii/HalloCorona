@@ -15,7 +15,6 @@ export default function Inbox() {
     const response = await API.get("/consultations");
     return response.data.data;
   });
-  console.log(consultations);
 
   return (
     <>
@@ -29,7 +28,7 @@ export default function Inbox() {
               Consultation
             </h2>
           </div>
-          {consultations.map((item, index) => (
+          {consultations?.map((item, index) => (
             <Card className="container p-3 mb-3" key={index}>
               <Card.Body>
                 <div className="inbox-ctnr">
@@ -42,24 +41,24 @@ export default function Inbox() {
                     />
                   </div>
                   <div className="inbox-right">
-                    <h4 style={{ fontWeight: "700" }}>{item.subject}</h4>
+                    <h4 style={{ fontWeight: "700" }}>{item?.subject}</h4>
                     <small className="text-muted">
                       Last update:{" "}
-                      {moment(item.updatedAt).format("DD MMMM YYYY")}
+                      {moment(item?.updatedAt).format("DD MMMM YYYY")}
                     </small>
-                    <div className="mt-1 cons-box">Keluhan: {item.desc}</div>
+                    <div className="mt-1 cons-box">Keluhan: {item?.desc}</div>
                   </div>
                   <div className="ms-3 d-block">
                     <small style={{ fontWeight: "700" }}>
-                      {moment(item.createdAt).format("DD MMMM YYYY")}
+                      {moment(item?.createdAt).format("DD MMMM YYYY")}
                     </small>
                     <p style={{ color: "#ff6185", fontWeight: "700" }}>
-                      {item.user.username}
+                      {item?.user.username}
                     </p>
                   </div>
                 </div>
               </Card.Body>
-              {item.reply == "" ? (
+              {item?.reply == "" ? (
                 <Card.Footer className="text-muted">
                   <div className="d-flex justify-content-center align-items-center p-4">
                     <h4 style={{ fontWeight: "700" }}>Waiting For Reply</h4>
@@ -77,9 +76,9 @@ export default function Inbox() {
                       />
                     </div>
                     <div className="inboxfoot-right mt-3">
-                      {item.reply}
+                      {item?.reply}
                       <a
-                        href={`${item.linkLive}`}
+                        href={`${item?.linkLive}`}
                         target="_blank"
                         rel="noreferrer"
                         className="ms-2"
